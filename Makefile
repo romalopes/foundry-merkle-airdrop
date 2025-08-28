@@ -8,7 +8,7 @@ clean  :; forge clean
 # Remove modules
 remove :; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
 
-install :; forge install cyfrin/foundry-devops@0.2.2 && forge install smartcontractkit/chainlink-brownie-contracts@1.1.1 && forge install foundry-rs/forge-std@v1.8.2
+install :; forge install cyfrin/foundry-devops@0.2.2 && forge install smartcontractkit/chainlink-brownie-contracts@1.1.1 && forge install foundry-rs/forge-std@v1.8.2 && forge install openzeppelin/openzeppelin-contracts && forge install cyfrin/foundry-devops && forge install dmfxyz/murky
 
 github:
 	@echo "Pushing to GitHub..."
@@ -44,16 +44,16 @@ cast-storage: ## Cast storage
 	cast storage 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 1
 deploy-anvil: ## Deploy to Anvil
 	@echo "Deploying to Anvil..."
-	forge script script/DeployFundMe.s.sol --rpc-url $(LOCAL_RPC_URL) --private-key $(ANVIL_PRIVATE_KEY) --broadcast
+	forge script script/DeployMerkleAirdrop.s.sol --rpc-url $(LOCAL_RPC_URL) --private-key $(ANVIL_PRIVATE_KEY) --broadcast
 deploy-alchemy-account-1: ## Deploy to Alchemy
 	@echo "Deploying to Alchemy..."
-	forge script script/DeployFundMe.s.sol --rpc-url $(ALCHEMY_RPC_URL) --private-key $(ACCOUNT_1_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY)
+	forge script script/DeployMerkleAirdrop.s.sol --rpc-url $(ALCHEMY_RPC_URL) --private-key $(ACCOUNT_1_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY)
 deploy-quicknode-chrome-account-1: ## Deploy to QuickNode
 	@echo "Deploying to QuickNode..."
-	forge script script/DeployFundMe.s.sol --rpc-url $(QUICKNODE_RPC_URL) --private-key $(CHROME_ACCOUNT_1_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY)
+	forge script script/DeployMerkleAirdrop.s.sol --rpc-url $(QUICKNODE_RPC_URL) --private-key $(CHROME_ACCOUNT_1_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY)
 deploy-metamask-account-2: ## Deploy to Metamask
 	@echo "Deploying to Metamask..."
-	forge script script/DeployFundMe.s.sol --rpc-url $(METAMASK_RPC_URL) --private-key $(ACCOUNT_2_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY)
+	forge script script/DeployMerkleAirdrop.s.sol --rpc-url $(METAMASK_RPC_URL) --private-key $(ACCOUNT_2_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY)
 
 NETWORK_ARGS := --rpc-url http://localhost:8545 --private-key $(ANVIL_PRIVATE_KEY) --broadcast
 

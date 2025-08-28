@@ -7,6 +7,7 @@ import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {SignatureChecker} from "@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol";
 import {MessageHashUtils} from "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
+import {console} from "forge-std/console.sol";
 
 // import {MerkleTree} from "lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
 
@@ -33,7 +34,7 @@ contract MerkleAirdrop is EIP712 {
     bytes32 private immutable i_merkleRoot;
     IERC20 private i_airDropToken;
     mapping(address claymer => bool claimed) public s_hasClaimed;
-    bytes32 private constant MESSAGE_TYPEHASH = keccak256("AirdropClaim(address account, uint256 amount)");
+    bytes32 private constant MESSAGE_TYPEHASH = keccak256("AirdropClaim(address account,uint256 amount)");
 
     constructor(bytes32 _merkleRoot, IERC20 _airDropToken) EIP712("MerkleAirdrop", "1") {
         i_merkleRoot = _merkleRoot;
